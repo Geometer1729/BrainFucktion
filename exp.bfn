@@ -1,0 +1,61 @@
+Fun move a b # a ->  0 , b -> a + b
+{
+  Loop a
+  {
+    Dec a
+    Inc b
+  }
+}
+
+Fun coppy a b #  a -> a , b -> a + b
+{
+	Var tmp
+  Loop a
+  {
+    Dec a
+    Inc b
+    Inc tmp
+  }
+  move tmp a
+}
+
+Fun zero a # a -> 0
+{
+  Loop a
+  {
+    Dec a
+  }
+}
+
+Fun mul a b sum #  a -> 0 , b -> b , sum -> a * b
+{
+	Var tmp
+  Loop a
+  {
+    Dec a
+    coppy b sum tmp
+  }
+}
+
+Fun exp a b return # a -> a , b -> 0 , return -> a^b
+{
+	Var tmp
+	Inc return # start return at 1
+	Loop b
+	{
+		Dec b
+		mul return a tmp 
+		move tmp return
+	}
+}
+
+Var a
+Var b
+Var return
+
+Read a
+Read b
+
+exp a b return 
+
+Write return
